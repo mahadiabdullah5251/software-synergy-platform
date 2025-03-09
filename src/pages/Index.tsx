@@ -13,6 +13,17 @@ const Index = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Company logos for trusted partners section
+  const trustedCompanies = [
+    { name: "TechCorp", logo: "/techcorp-logo.png" },
+    { name: "InnovateSoft", logo: "/innovatesoft-logo.png" },
+    { name: "DataFlow", logo: "/dataflow-logo.png" },
+    { name: "CloudNexus", logo: "/cloudnexus-logo.png" },
+    { name: "SecureEdge", logo: "/secureedge-logo.png" },
+    { name: "DevStream", logo: "/devstream-logo.png" },
+    { name: "QuantumIT", logo: "/quantumit-logo.png" },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -67,15 +78,46 @@ const Index = () => {
         </section>
 
         {/* Logos Section */}
-        <section className="py-12 bg-slate-50 dark:bg-slate-900/50">
+        <section className="py-12 bg-slate-50 dark:bg-slate-900/50 overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
-              <p className="text-muted-foreground">Trusted by industry leaders</p>
+              <p className="text-muted-foreground font-medium">Trusted by industry leaders</p>
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="h-8 w-24 bg-slate-200 dark:bg-slate-800 rounded opacity-50"></div>
-              ))}
+            
+            <div className="relative">
+              {/* First row of logos with animation */}
+              <motion.div 
+                className="flex items-center gap-8 md:gap-16"
+                initial={{ x: 0 }}
+                animate={{ x: "-20%" }}
+                transition={{ 
+                  repeat: Infinity, 
+                  repeatType: "mirror", 
+                  duration: 20, 
+                  ease: "linear" 
+                }}
+              >
+                {trustedCompanies.map((company, i) => (
+                  <div key={i} className="flex flex-col items-center justify-center min-w-[140px]">
+                    <div className="h-10 w-36 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center">
+                      <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+                        {company.name}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+                
+                {/* Duplicate first few items to ensure smooth loop */}
+                {trustedCompanies.slice(0, 3).map((company, i) => (
+                  <div key={`dup-${i}`} className="flex flex-col items-center justify-center min-w-[140px]">
+                    <div className="h-10 w-36 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center">
+                      <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+                        {company.name}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </div>
         </section>
