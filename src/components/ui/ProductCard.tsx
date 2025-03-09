@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/components/ui/use-toast";
 
 interface ProductCardProps {
   product: Product;
@@ -12,6 +13,32 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, featured = false }: ProductCardProps) => {
+  const { toast } = useToast();
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your cart.`,
+      duration: 3000,
+    });
+  };
+
+  const handleDemo = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (product.demoUrl) {
+      window.open(product.demoUrl, '_blank');
+    } else {
+      toast({
+        title: "Demo not available",
+        description: "Please contact sales for a personalized demo.",
+        duration: 3000,
+      });
+    }
+  };
+
   return (
     <Card
       className={cn(
@@ -95,10 +122,12 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
             <span className="text-xs text-muted-foreground">/mo</span>
           </div>
           <div className="flex space-x-2">
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={handleDemo}>
               Demo
             </Button>
-            <Button size="sm">Add to Cart</Button>
+            <Button size="sm" onClick={handleAddToCart}>
+              Add to Cart
+            </Button>
           </div>
         </div>
       </CardFooter>
