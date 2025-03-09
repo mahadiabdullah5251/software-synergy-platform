@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/91b311b6-58d2-42e8-972a-ae8e49c1fa15
+**URL**:https://software-synergy-platform.lovable.app/)
 
 ## How can I edit this code?
 
@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/91b311b6-58d2-42e8-972a-ae8e49c1fa15) and start prompting.
+Simply visit the [Lovable Project][(https://software-synergy-platform.lovable.app/) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
